@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="utf-8">
+		<title>"Charting" new territory</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"> </script>
+		<script src="js/highcharts.js"></script>
+		<link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+
+<header>
+	<h1>FBI Property Crime Data</h1>
+		
+		<nav>
+		<ul>
+			<li><a href="#chart-A">Property Crime, 2005-2014</a></li>
+			<li><a href="#chart-B">Property Crime by Region</a></li>
+		</ul>
+		</nav>
+</header>
+
+<article>
+<p>This data, taken from the FBI's official crime data, discusses property crime data. According to the <a href="https://www.fbi.gov/about-us/cjis/ucr/crime-in-the-u.s/2014/crime-in-the-u.s.-2014/offenses-known-to-law-enforcement/property-crime">FBI's property crime website</a>:</p>
+<aside>"In the FBI’s Uniform Crime Reporting (UCR) Program, property crime includes the offenses of burglary, larceny-theft, motor vehicle theft, and arson. The object of the theft-type offenses is the taking of money or property, but there is no force or threat of force against the victims."</aside> 
+
+<p>In general, property crime is not life-threatening, but may vary in severity from misdemeanor offenses to felonies based upon value of property damaged or amount of property affected in the crime. The first chart shows a trend in the past ten years in the U.S. that shows that the number of property crimes committed has in fact been in a downward trend in crimes reported, despite the fact that the population of the United States has solidly increased. The second chart shows a breakdown in 2014's statistics based upon property crime statistics reported in the FBI's four major regions of the United States.</p>
+</article>
+
+<div id="Charts">
+<div id="chart-A" class="chart" style="width: 75%; height: 400px;">
+<script>
+$(document).ready(function(){
+    $('#chart-A').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Property crime, 2005-2014'
+        },
+        xAxis: {
+            categories: ['2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014']
+        },
+        yAxis: {
+            title: {
+                text: 'Reported property crimes (In Millions)'
+            }
+        },
+        series: [{
+            name: 'Number of property crimes',
+            data: [10.17, 10.02, 9.88, 9.77, 9.34, 9.11, 9.05, 9.00, 8.65, 8.28]
+        },]
+    });
+});
+</script>
+</div>
+<div id="disclaimer"><p>Data taken from <a href="https://www.fbi.gov/about-us/cjis/ucr/crime-in-the-u.s/2014/crime-in-the-u.s.-2014/tables/table-1">FBI's crime statistics.</a></p></div>
+
+<div id="chart-B" class="chart" style="width: 75%; height: 400px;">
+<script>
+$(function () {
+    $('#chart-B').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Breakdown in property crime date by Region, 2014'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            name: "Regions",
+            colorByPoint: true,
+            data: [{
+                name: "South",
+                y: 43.5
+            }, {
+                name: "Midwest",
+                y: 19.5,
+                sliced: true,
+                selected: true
+            }, {
+                name: "West",
+                y: 24.6
+            }, {
+                name: "Northwest",
+                y: 12.3
+            }]
+        }]
+    });
+});    
+</script>
+</div>
+
+<div id="disclaimer">
+<p>Data taken from <a href="https://www.fbi.gov/about-us/cjis/ucr/crime-in-the-u.s/2014/crime-in-the-u.s.-2014/tables/table-3">FBI crime statistics.</a></p></div>
+</div>
+</body>
+</html>
